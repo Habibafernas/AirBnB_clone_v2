@@ -8,18 +8,19 @@ import models
 from models.city import City
 import shlex
 
-  class State(BaseModel, Base):
+class State(BaseModel, Base):
     """This is the class for State
     Attributes:
         name: input name
     """
-        __tablename__ = "states"
-        name = Column(String(128), nullable=False)
-        cities = relationship("City", cascade='all, delete, delete-orphan',
+    __tablename__ = "states"
+    name = Column(String(128), nullable=False)
+    cities = relationship("City", cascade='all, delete, delete-orphan',
                             backref="state")
-         @property
-        def cities(self):
+    @property
+    def cities(self):
         var = models.storage.all()
+     
         lista = []
         result = []
         for key in var:
